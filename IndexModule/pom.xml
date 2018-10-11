@@ -7,6 +7,10 @@
     <groupId>com.github.qiaozhen9636</groupId>
     <artifactId>IndexModule</artifactId>
     <version>1.0</version>
+    <modules>
+        <module>webContorlor</module>
+    </modules>
+    <packaging>pom</packaging>
 
 
 </project>

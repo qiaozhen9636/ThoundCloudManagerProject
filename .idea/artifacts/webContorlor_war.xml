@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="webContorlor:war">
+    <output-path>$PROJECT_DIR$/IndexModule/webContorlor/target</output-path>
+    <root id="archive" name="webContorlor.war">
+      <element id="artifact" artifact-name="webContorlor:war exploded" />
+    </root>
+  </artifact>
+</component>
