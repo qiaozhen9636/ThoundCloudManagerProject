@@ -1,566 +1,600 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-		<title>Bootstrap 101 Template</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
 
-		<!-- Bootstrap -->
-		<link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
-		<!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
-		<!--[if lt IE 9]>
-	    <![endif]-->
-		<script src="js/html5shiv.min.js"></script>
-		<script src="js/respond.min.js"></script>
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
 
-		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-		<script src="js/jquery.min.js"></script>
-		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-		<script src="js/bootstrap.min.js"></script>
-		<link href='css/base.css' rel='stylesheet' type='text/css'>
-		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-		<!--theme-style-->
-		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-		<style type="text/css">
-			.collapse-list-in {
-				padding: 10px;
-				margin: 0px;
-			}
-			
-			.collapse-list {
-				padding: 0px;
-			}
-			
-			.thumbnail {
-				background-color: #F8F8F8;
-			}
-		</style>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$("#carousel-news-inner").find("img").css("margin-left", "auto");
-				$("#carousel-news-inner").find("img").css("margin-right", "auto");
-				$("#maincontext").find(".row").css({ "margin-top": "10px", "margin-left": "0px", "margin-right": "0px", "border-radius": "6px" });
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="js/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="js/bootstrap.min.js"></script>
+    <link href='css/base.css' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--theme-style-->
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <style type="text/css">
+        .collapse-list-in {
+            padding: 10px;
+            margin: 0px;
+        }
 
-				$.ajax({
-					url: "${pageContext.request.contextPath}/PageControllerServlet?method=getNewsData",
-					type: "GET",
-					success: function(data) {
-						$("#carousel-news-inner").empty();
-						$("#carousel-news-indicators").empty();
-						for(var i in data) {
-							var divtype = "";
-							if(i == 1) {
-								divtype = "<div class='item active'>";
-							} else {
-								divtype = "<div class='item'>";
-							}
-							divtype += "<img src='" + data[i].picturesrc + "' alt='...'>";
-							divtype += "<div class='carousel-caption'>";
+        .collapse-list {
+            padding: 0px;
+        }
 
-							var a = $(divtype);
-							$("#carousel-news-inner").append(a);
-						}
-						$("#carousel-news-inner").find("img").css("margin-left", "auto");
-						$("#carousel-news-inner").find("img").css("margin-right", "auto");
-					},
-					dataType: "json",
-					error: function() {
+        .thumbnail {
+            background-color: #F8F8F8;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#carousel-news-inner").find("img").css("margin-left", "auto");
+            $("#carousel-news-inner").find("img").css("margin-right", "auto");
+            $("#maincontext").find(".row").css({
+                "margin-top": "10px",
+                "margin-left": "0px",
+                "margin-right": "0px",
+                "border-radius": "6px"
+            });
 
-					}
-				})
+            $.ajax({
+                url: "localhost:8080/PageControllerServlet?method=getNewsData",
+                type: "GET",
+                success: function (data) {
+                    $("#carousel-news-inner").empty();
+                    $("#carousel-news-indicators").empty();
+                    for (var i in data) {
+                        var divtype = "";
+                        if (i == 1) {
+                            divtype = "<div class='item active'>";
+                        } else {
+                            divtype = "<div class='item'>";
+                        }
+                        divtype += "<img src='" + data[i].picturesrc + "' alt='...'>";
+                        divtype += "<div class='carousel-caption'>";
 
-				$.ajax({
-					url: "${pageContext.request.contextPath}/PageControllerServlet?method=getNewsData",
-					type: "POST",
-					success: function(data) {
+                        var a = $(divtype);
+                        $("#carousel-news-inner").append(a);
+                    }
+                    $("#carousel-news-inner").find("img").css("margin-left", "auto");
+                    $("#carousel-news-inner").find("img").css("margin-right", "auto");
+                },
+                dataType: "json",
+                error: function () {
 
-					},
-					dataType: "json",
-					error: function() {
-//						alert("fail");
-						$(".have-userdata").addClass("hidden");
-					}
-				})
-			})
-		</script>
-	</head>
+                }
+            })
 
-	<body style="background-color: #ECF0F1;">
-		<div class="container-fluid">
+            $.ajax({
+                url: "http://localhost:8080/PageControllerServlet?method=getUserData",
+                type: "POST",
+                success: function (data) {
+                    $("#loginwindow").addClass("hidden")
+                },
+                dataType: "json",
+                error: function () {
+						alert("fail");
+                    $(".have-userdata").addClass("hidden");
+                }
+            })
+        })
+    </script>
+</head>
 
-			<div class="row">
-				<div class="col-md-12">
-					<nav class="navbar navbar-default">
-						<div class="container-fluid">
-							<!-- Brand and toggle get grouped for better mobile display -->
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-       							<span class="sr-only">Toggle navigation</span>
-        						<span class="icon-bar"></span>
-        						<span class="icon-bar"></span>
-        						<span class="icon-bar"></span>
-      					</button>
-								<a class="navbar-brand" href="#" style="text-align: center;">智能公会管理系统</a>
-							</div>
+<body style="background-color: #ECF0F1;">
+<div class="container-fluid">
 
-							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-								<p class="navbar-left navbar-text">使用有困难？直接搜一下</p>
-								<form class="navbar-form navbar-left">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="搜索一下">
-									</div>
-									<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-								</form>
-								<ul class="nav navbar-nav navbar-right " style="display: block; margin-right: 5px;">
-									<li>
-										<div class="row text-center">
-											<div class="btn-group" role="group" aria-label="...">
-												<button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></button>
-												<button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="badge" style="margin-left: 4px;">99+</span></button>
-												<button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-flag" aria-hidden="true"></span><span class="badge" style="margin-left: 4px;">99+</span></button>
-												<button type="button" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="badge" style="margin-left: 4px;">99+</span></button>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<!-- /.navbar-collapse -->
-						</div>
-						<!-- /.container-fluid -->
-					</nav>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div id="carousel-news" class="carousel slide" data-ride="carousel">
-						<ol id="carousel-news-indicators" class="carousel-indicators">
-							<li data-target="#carousel-news" data-slide-to="0" class="active"></li>
-							<li data-target="#carousel-news" data-slide-to="1"></li>
-							<li data-target="#carousel-news" data-slide-to="2"></li>
-						</ol>
-						<!-- Wrapper for slides -->
-						<div id="carousel-news-inner" class="carousel-inner" role="listbox">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#" style="text-align: center;">智能公会管理系统</a>
+                    </div>
 
-							<div class="item active">
-								<img src="img/CarouselNullImg1.svg" alt="...">
-								<!-- 文字描述-->
-								<div class="carousel-caption">
-									<h2>隔壁薯片半价了</h2>
-									<p>震惊！隔壁薯片居然半价促销，真是男默女泪</p>
-								</div>
-							</div>
-							<div class="item">
-								<img src="img/CarouselNullImg1.svg" alt="...">
-								<!-- 文字描述-->
-								<div class="carousel-caption">
-									<h2>作者肚子饿了</h2>
-									<p>哎你说我一个写后台搞啥前端呢</p>
-								</div>
-							</div>
-							<div class="item">
-								<img src="img/CarouselNullImg1.svg" alt="...">
-								<!-- 文字描述-->
-								<div class="carousel-caption">
-									<h2>这项目的前后台都是我一个人写的哦</h2>
-									<p>快夸夸我</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row" id="maincontext">
-				<div class="col-md-3">
-					<div class="row panel panel-default" style="padding: 10px;background-color: #F8F8F8;">
-						<form class="form-signin" action="">
-							<h2 class="form-signin-heading">请登录</h2>
-							<label>用户名：</label>
-							<label for="inputEmail" class="sr-only">Email address</label>
-							<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-							<br/><label>密码：</label>
-							<label for="inputPassword" class="sr-only">Password</label>
-							<div class="checkbox">
-								<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-								<label>
-            						<input type="checkbox" value="remember-me"> 两周内免登录
-          						</label>
-							</div>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-							<br/>
-							<p class="bg-info text-center">如果您没有用户名密码，请询问您的上级</p>
-						</form>
-					</div>
-					<div class="row panel panel-default have-userdata" style="padding: 10px;background-color: #F8F8F8;">
-						<div class="row">
-							<div class="col-md-3 col-sm-3 col-xs-3">
-								<img src="img/avatar.png" class="img-circle" style="margin-left: -15px;" />
-							</div>
-							<div class="col-md-9 col-sm-9 col-xs-9">
-								<div class="row" style="padding-left: 10px;">
-									<h4>用户姓名</h4>
-									<h5>用户所在单位<small> 用户职位</small></h5>
-								</div>
-							</div>
-						</div>
-						<hr/>
-						<div class="row">
-							<div class="col-xs-6 text-center">
-								<div class="row">
-									用户积分
-									<p>0</p>
-								</div>
-								<div class="row">
-									剩余金额
-									<p><span class="glyphicon glyphicon-yen"></span>
-										<font>0</font>
-									</p>
-								</div>
-							</div>
-							<div class="col-xs-6 text-center">
-								<div class="row">
-									距离
-									<font>团建</font>还有
-									<p>
-										<font>0</font>天</p>
-								</div>
-								<div class="row">
-									今日事项
-									<p>
-										<font>0</font>项</p>
-								</div>
-							</div>
-							<button class="btn btn-lg btn-primary btn-block" onclick="location.href='http://www.baidu.com/'">退出</button>
-						</div>
-					</div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <p class="navbar-left navbar-text">使用有困难？直接搜一下</p>
+                        <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="搜索一下">
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"
+                                                                                aria-hidden="true"></span></button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right " style="display: block; margin-right: 5px;">
+                            <li>
+                                <div class="row text-center">
+                                    <div class="btn-group" role="group" aria-label="...">
+                                        <button type="button" class="btn btn-default navbar-btn"><span
+                                                class="glyphicon glyphicon-home" aria-hidden="true"></span></button>
+                                        <button type="button" class="btn btn-default navbar-btn"><span
+                                                class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span
+                                                class="badge" style="margin-left: 4px;">99+</span></button>
+                                        <button type="button" class="btn btn-default navbar-btn"><span
+                                                class="glyphicon glyphicon-flag" aria-hidden="true"></span><span
+                                                class="badge" style="margin-left: 4px;">99+</span></button>
+                                        <button type="button" class="btn btn-default navbar-btn"><span
+                                                class="glyphicon glyphicon-shopping-cart"
+                                                aria-hidden="true"></span><span class="badge" style="margin-left: 4px;">99+</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="carousel-news" class="carousel slide" data-ride="carousel">
+                <ol id="carousel-news-indicators" class="carousel-indicators">
+                    <li data-target="#carousel-news" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-news" data-slide-to="1"></li>
+                    <li data-target="#carousel-news" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div id="carousel-news-inner" class="carousel-inner" role="listbox">
 
-					<div class="row">
-						<div class="list-group panel-group" id="panel-list">
-							<a class="list-group-item active">
-								工作事项
-								<span style="float: right;">								
-									<span href=".item-1" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    <div class="item active">
+                        <img src="img/CarouselNullImg1.svg" alt="...">
+                        <!-- 文字描述-->
+                        <div class="carousel-caption">
+                            <h2>隔壁薯片半价了</h2>
+                            <p>震惊！隔壁薯片居然半价促销，真是男默女泪</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="img/CarouselNullImg1.svg" alt="...">
+                        <!-- 文字描述-->
+                        <div class="carousel-caption">
+                            <h2>作者肚子饿了</h2>
+                            <p>哎你说我一个写后台搞啥前端呢</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="img/CarouselNullImg1.svg" alt="...">
+                        <!-- 文字描述-->
+                        <div class="carousel-caption">
+                            <h2>这项目的前后台都是我一个人写的哦</h2>
+                            <p>快夸夸我</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="maincontext">
+        <div class="col-md-3">
+            <div id="loginwindow" class="row panel panel-default" style="padding: 10px;background-color: #F8F8F8;">
+                <form class="form-signin" action="">
+                    <h2 class="form-signin-heading">请登录</h2>
+                    <label>用户名：</label>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required
+                           autofocus>
+                    <br/><label>密码：</label>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <div class="checkbox">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        <label>
+                            <input type="checkbox" value="remember-me"> 两周内免登录
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+                    <br/>
+                    <p class="bg-info text-center">如果您没有用户名密码，请询问您的上级</p>
+                </form>
+            </div>
+            <div class="row panel panel-default have-userdata" style="padding: 10px;background-color: #F8F8F8;">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <img src="img/avatar.png" class="img-circle" style="margin-left: -15px;"/>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-9">
+                        <div class="row" style="padding-left: 10px;">
+                            <h4>用户姓名</h4>
+                            <h5>用户所在单位
+                                <small> 用户职位</small>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <div class="row">
+                            用户积分
+                            <p>0</p>
+                        </div>
+                        <div class="row">
+                            剩余金额
+                            <p><span class="glyphicon glyphicon-yen"></span>
+                                <span>0</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <div class="row">
+                            距离
+                            <span>团建</span>还有
+                            <p>
+                                <span>0</span>天
+                            </p>
+                        </div>
+                        <div class="row">
+                            今日事项
+                            <p>
+                                <span>0</span>项
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" onclick="location.href='http://www.baidu.com/'">
+                        退出
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="list-group panel-group" id="panel-list">
+                    <a class="list-group-item active">
+                        工作事项
+                        <span style="float: right;">
+									<span href=".item-1" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">机构概况</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">部门A对外功能</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">部门B对外功能</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">人事部</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">科技部</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">简历提交</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-1">
-								<p class="collapse-list-in">意见反馈</p>
-							</a>
-							<a class="list-group-item active">
-								技能培训
-								<span style="float: right;">					
-									<span href=".item-2" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">机构概况</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">部门A对外功能</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">部门B对外功能</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">人事部</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">科技部</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">简历提交</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-1">
+                        <p class="collapse-list-in">意见反馈</p>
+                    </a>
+                    <a class="list-group-item active">
+                        技能培训
+                        <span style="float: right;">
+									<span href=".item-2" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-2">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-2">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-2">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-2">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-2">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-2">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a class="list-group-item active">
-								信息联络
-								<span style="float: right;">								
-									<span href=".item-3" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-2">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-2">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-2">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-2">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-2">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-2">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a class="list-group-item active">
+                        信息联络
+                        <span style="float: right;">
+									<span href=".item-3" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-3">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-3">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-3">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a class="list-group-item active">
-								好吃好玩
-								<span style="float: right;">								
-									<span href=".item-4" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-3">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-3">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-3">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a class="list-group-item active">
+                        好吃好玩
+                        <span style="float: right;">
+									<span href=".item-4" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-4">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-4">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-4">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a class="list-group-item active">
-								置物格子
-								<span style="float: right;">								
-									<span href=".item-5" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-4">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-4">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-4">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a class="list-group-item active">
+                        置物格子
+                        <span style="float: right;">
+									<span href=".item-5" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-5">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-5">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-5">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a class="list-group-item active">
-								舒缓减压
-								<span style="float: right;">								
-									<span href=".item-6" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-5">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-5">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-5">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a class="list-group-item active">
+                        舒缓减压
+                        <span style="float: right;">
+									<span href=".item-6" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-6">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-6">
-								<p class="collapse-list-in">Link1111456</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-6">
-								<p class="collapse-list-in">Link1111</p>
-							</a>
-							<a class="list-group-item active have-userdata">
-								个人中心
-								<span style="float: right;">								
-									<span href=".item-7" class="glyphicon glyphicon-chevron-down" aria-hidden="true"  data-toggle="collapse"></span>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-6">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-6">
+                        <p class="collapse-list-in">Link1111456</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-6">
+                        <p class="collapse-list-in">Link1111</p>
+                    </a>
+                    <a class="list-group-item active have-userdata">
+                        个人中心
+                        <span style="float: right;">
+									<span href=".item-7" class="glyphicon glyphicon-chevron-down" aria-hidden="true"
+                                          data-toggle="collapse"></span>
 								</span>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-7 have-userdata">
-								<p class="collapse-list-in">个人资料</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-7 have-userdata">
-								<p class="collapse-list-in">积分商城</p>
-							</a>
-							<a href="#" class="list-group-item collapse-list item-7 have-userdata">
-								<p class="collapse-list-in">意见反馈</p>
-							<a href="#" class="list-group-item collapse-list item-7 have-userdata">
-								<p class="collapse-list-in">系统设置</p>
-							</a>
-							<a class="list-group-item active" style="padding: 5px;">
-								<br />
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-9">
-					<div class="row">
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-7 have-userdata">
+                        <p class="collapse-list-in">个人资料</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-7 have-userdata">
+                        <p class="collapse-list-in">积分商城</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-7 have-userdata">
+                        <p class="collapse-list-in">意见反馈</p>
+                    </a>
+                    <a href="#" class="list-group-item collapse-list item-7 have-userdata">
+                        <p class="collapse-list-in">系统设置</p>
+                    </a>
+                    <a class="list-group-item active" style="padding: 5px;">
+                        <br/>
+                    </a>
 
-						<!-- Nav tabs -->
-						<ul id="artcle-ul" class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active">
-								<a href="#home" aria-controls="home" role="tab" data-toggle="tab">新闻</a>
-							</li>
-							<li role="presentation" class="have-userdata">
-								<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">公告</a>
-							</li>
-						</ul>
-						<!-- Tab panes -->
-						<div class="tab-content panel panel-default">
-							<div role="tabpanel" class="tab-pane active" id="home">
-								<ol class="breadcrumb">
-									按年份划分：
-									<li>
-										<a href="#">2018年</a>
-									</li>
-									<li>
-										<a href="#">2017年</a>
-									</li>
-									<li>
-										<a href="#">2016年</a>
-									</li>
-									<li>
-										<a href="#">2015年</a>
-									</li>
-									<li>
-										<a href="#">2014年</a>
-									</li>
-									<li>
-										<a href="#">2013年</a>
-									</li>
-									<li>
-										<a href="#">2012年</a>
-									</li>
-									<li>
-										<a href="#">2011年</a>
-									</li>
-									<li>
-										<a href="#">2010年</a>
-									</li>
-									<li>
-										<a href="#">2009年</a>
-									</li>
-									<li>
-										<a href="#">2008年</a>
-									</li>
-									<li>
-										<a href="#">2007年</a>
-									</li>
-									<br/>按月份划分：
-									<li>
-										<a href="#">1月</a>
-									</li>
-									<li>
-										<a href="#">2月</a>
-									</li>
-									<li>
-										<a href="#">3月</a>
-									</li>
-									<li>
-										<a href="#">4月</a>
-									</li>
-									<li>
-										<a href="#">5月</a>
-									</li>
-									<li>
-										<a href="#">6月</a>
-									</li>
-									<li>
-										<a href="#">7月</a>
-									</li>
-									<li>
-										<a href="#">8月</a>
-									</li>
-									<li>
-										<a href="#">9月</a>
-									</li>
-									<li>
-										<a href="#">10月</a>
-									</li>
-									<li>
-										<a href="#">11月</a>
-									</li>
-									<li>
-										<a href="#">12月</a>
-									</li>
-									<br/>按来源划分：
-									<li>
-										<a href="#">内部</a>
-									</li>
-									<li>
-										<a href="#">外部</a>
-									</li>
-									<br/>按类别划分：
-									<li>
-										<a href="#">内部</a>
-									</li>
-									<li>
-										<a href="#">外部</a>
-									</li>
-								</ol>
-								<div class="row">
-									<div class="col-sm-6 col-md-4">
-										<div class="thumbnail">
-											<img src="img/avatar.png" alt="...">
-											<div class="caption">
-												<h3>新闻标题</h3>
-												<p>摘要...................................................................................</p>
-												<p>
-													<a href="#" class="btn btn-primary" role="button">查看详情</a>
-													<a href="#" class="btn btn-success have-userdata" role="button">修改</a>
-													<a href="#" class="btn btn-danger have-userdata have-authorities" role="button">删除</a>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row text-center">
-									<nav aria-label="Page navigation">
-										<ul class="pagination">
-											<li>
-												<a href="#" aria-label="Previous">
-													<span aria-hidden="true">&laquo;</span>
-												</a>
-											</li>
-											<li class="active">
-												<a href="#">1</a>
-											</li>
-											<li>
-												<a href="#">2</a>
-											</li>
-											<li>
-												<a href="#">3</a>
-											</li>
-											<li>
-												<a href="#">4</a>
-											</li>
-											<li>
-												<a href="#">5</a>
-											</li>
-											<li>
-												<a href="#" aria-label="Next">
-													<span aria-hidden="true">&raquo;</span>
-												</a>
-											</li>
-										</ul>
-									</nav>
-								</div>
-							</div>
-							<div role="tabpanel" class="tab-pane have-userdata" id="profile">
-								<ol class="breadcrumb">
-									<li>
-										<a href="#">Home</a>
-									</li>
-									<li>
-										<a href="#">2013</a>
-									</li>
-									<li class="active">十一月</li>
-								</ol>
-								<div class="row">
-									<div class="col-sm-6 col-md-4">
-										<div class="thumbnail">
-											<img src="img/avatar.png" alt="...">
-											<div class="caption">
-												<h3>千云智能公会系统将于2019年1月完成！</h3>
-												<p>我们的系统，将在2019年1月正式完成交付使用</p>
-												<p>
-													<a href="#" class="btn btn-primary" role="button">我知道了</a>
-													<a href="#" class="btn btn-default" role="button">查看详情</a>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
 
-							</div>
-						</div>
+                <!-- Nav tabs -->
+                <ul id="artcle-ul" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">新闻</a>
+                    </li>
+                    <li role="presentation" class="have-userdata">
+                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">公告</a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content panel panel-default">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <ol class="breadcrumb">
+                            按年份划分：
+                            <li>
+                                <a href="#">2018年</a>
+                            </li>
+                            <li>
+                                <a href="#">2017年</a>
+                            </li>
+                            <li>
+                                <a href="#">2016年</a>
+                            </li>
+                            <li>
+                                <a href="#">2015年</a>
+                            </li>
+                            <li>
+                                <a href="#">2014年</a>
+                            </li>
+                            <li>
+                                <a href="#">2013年</a>
+                            </li>
+                            <li>
+                                <a href="#">2012年</a>
+                            </li>
+                            <li>
+                                <a href="#">2011年</a>
+                            </li>
+                            <li>
+                                <a href="#">2010年</a>
+                            </li>
+                            <li>
+                                <a href="#">2009年</a>
+                            </li>
+                            <li>
+                                <a href="#">2008年</a>
+                            </li>
+                            <li>
+                                <a href="#">2007年</a>
+                            </li>
+                            <br/>
+                            按月份划分：
+                            <li>
+                                <a href="#">1月</a>
+                            </li>
+                            <li>
+                                <a href="#">2月</a>
+                            </li>
+                            <li>
+                                <a href="#">3月</a>
+                            </li>
+                            <li>
+                                <a href="#">4月</a>
+                            </li>
+                            <li>
+                                <a href="#">5月</a>
+                            </li>
+                            <li>
+                                <a href="#">6月</a>
+                            </li>
+                            <li>
+                                <a href="#">7月</a>
+                            </li>
+                            <li>
+                                <a href="#">8月</a>
+                            </li>
+                            <li>
+                                <a href="#">9月</a>
+                            </li>
+                            <li>
+                                <a href="#">10月</a>
+                            </li>
+                            <li>
+                                <a href="#">11月</a>
+                            </li>
+                            <li>
+                                <a href="#">12月</a>
+                            </li>
+                            <br/>按来源划分：
+                            <li>
+                                <a href="#">内部</a>
+                            </li>
+                            <li>
+                                <a href="#">外部</a>
+                            </li>
+                            <br/>按类别划分：
+                            <li>
+                                <a href="#">内部</a>
+                            </li>
+                            <li>
+                                <a href="#">外部</a>
+                            </li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="img/avatar.png" alt="...">
+                                    <div class="caption">
+                                        <h3>新闻标题</h3>
+                                        <p>
+                                            摘要...................................................................................</p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary" role="button">查看详情</a>
+                                            <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
+                                            <a href="#" class="btn btn-danger have-userdata have-authorities"
+                                               role="button">删除</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#">1</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">4</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">5</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane have-userdata" id="profile">
+                        <ol class="breadcrumb">
+                            <li>
+                                <a href="#">Home</a>
+                            </li>
+                            <li>
+                                <a href="#">2013</a>
+                            </li>
+                            <li class="active">十一月</li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <img src="img/avatar.png" alt="...">
+                                    <div class="caption">
+                                        <h3>千云智能公会系统将于2019年1月完成！</h3>
+                                        <p>我们的系统，将在2019年1月正式完成交付使用</p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary" role="button">我知道了</a>
+                                            <a href="#" class="btn btn-default" role="button">查看详情</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 
 </html>
