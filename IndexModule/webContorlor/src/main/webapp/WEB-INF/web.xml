@@ -9,6 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath*:application*.xml</param-value>
+  </context-param>
+    <!--<servlet>-->
+        <!--<servlet-name>dispath</servlet-name>-->
+        <!--<servlet-class>-->
+            <!--org.springframework.stereotype.-->
+        <!--</servlet-class>-->
+    <!--</servlet>-->
   <!--<error-page>-->
     <!--<error-code>404</error-code>-->
     <!--<location>/error/404.html</location>-->

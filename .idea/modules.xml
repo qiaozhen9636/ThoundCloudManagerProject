@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/IndexModule/IndexModule.iml" filepath="$PROJECT_DIR$/IndexModule/IndexModule.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ThoundCloudManagerProject.iml" filepath="$PROJECT_DIR$/.idea/ThoundCloudManagerProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IndexModule/UserService/UserService.iml" filepath="$PROJECT_DIR$/IndexModule/UserService/UserService.iml" />
       <module fileurl="file://$PROJECT_DIR$/IndexModule/webContorlor/webContorlor.iml" filepath="$PROJECT_DIR$/IndexModule/webContorlor/webContorlor.iml" />
     </modules>
   </component>

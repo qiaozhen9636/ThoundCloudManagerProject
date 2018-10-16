@@ -9,6 +9,7 @@
     <version>1.0</version>
     <modules>
         <module>webContorlor</module>
+        <module>UserService</module>
     </modules>
     <packaging>pom</packaging>
 

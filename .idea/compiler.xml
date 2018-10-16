@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="UserService" />
         <module name="webContorlor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="IndexModule" target="1.5" />
+      <module name="UserService" target="1.5" />
       <module name="webContorlor" target="1.7" />
     </bytecodeTargetLevel>
   </component>
