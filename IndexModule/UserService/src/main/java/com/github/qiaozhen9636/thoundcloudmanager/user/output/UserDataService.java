@@ -10,6 +10,7 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.output;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 
@@ -108,10 +109,10 @@ public interface UserDataService {
     /**
      * @return  获取用户余额
      */
-    String getUserBalance();
+    BigDecimal getUserBalance();
 
     /**
      * @return  获取用户代办事项
      */
-    String getUserTodo();
+    int getUserTodo();
 }

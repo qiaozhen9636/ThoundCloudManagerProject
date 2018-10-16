@@ -14,6 +14,7 @@ import com.github.qiaozhen9636.thoundcloudmanager.user.service.NowUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 /**
@@ -87,7 +88,7 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public int getIntegral() {
-        return 0;
+        return userService.getBaseUserData().getuIntegeral();
     }
 
     public String getUserDepName() {
@@ -98,11 +99,11 @@ public class UserDataServiceImpl implements UserDataService {
         return null;
     }
 
-    public String getUserBalance() {
-        return null;
+    public BigDecimal getUserBalance() {
+        return userService.getBaseUserData().getuBalance();
     }
 
-    public String getUserTodo() {
-        return null;
+    public int getUserTodo() {
+        return userService.getBaseUserData().getuTODO();
     }
 }

@@ -12,6 +12,5 @@
         <module>UserService</module>
     </modules>
     <packaging>pom</packaging>
-
-
+    
 </project>

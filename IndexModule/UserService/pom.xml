@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>UserService</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
@@ -74,5 +75,6 @@
 
 
     </dependencies>
+
 
 </project>
