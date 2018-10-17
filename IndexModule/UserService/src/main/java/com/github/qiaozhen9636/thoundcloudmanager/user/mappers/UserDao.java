@@ -18,4 +18,6 @@ public interface UserDao {
     BaseUser findUserStatusByLoginName(String name);
 
     void setUserLoginType(@Param(value = "uid") int getuId,@Param(value = "type") int i);
+
+    BaseUser findUserStatusByUId(int uId);
 }

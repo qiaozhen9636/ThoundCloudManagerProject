@@ -10,7 +10,6 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.beans;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -32,20 +31,38 @@ public class BaseUser {
     private String uHeadUrl;
     @Value("${BaseUser.Name}")
     private String uName;
+    @Value("test")
+    private String uUserName;
     @Value("${BaseUser.Password}")
     private String uPassword;
     @Value("${BaseUser.LoginType}")
     private int uLoginType;
-    @Autowired
-    private DepentMent depentMent;
+    @Value("${BaseUser.Id}")
+    private int depId;
+
     @Value("${BaseUser.Balance}")
     private BigDecimal uBalance;
     @Value("${BaseUser.Integeral}")
     private int uIntegeral;
     @Value("${BaseUser.TODO}")
     private int uTODO;
-
     public BaseUser() {
+    }
+
+    public String getuUserName() {
+        return uUserName;
+    }
+
+    public void setuUserName(String uUserName) {
+        this.uUserName = uUserName;
+    }
+
+    public int getDepId() {
+        return depId;
+    }
+
+    public void setDepId(int depId) {
+        this.depId = depId;
     }
 
     public int getuId() {
@@ -88,14 +105,6 @@ public class BaseUser {
         this.uLoginType = uLoginType;
     }
 
-    public DepentMent getDepentMent() {
-        return depentMent;
-    }
-
-    public void setDepentMent(DepentMent depentMent) {
-        this.depentMent = depentMent;
-    }
-
     public BigDecimal getuBalance() {
         return uBalance;
     }
@@ -126,9 +135,10 @@ public class BaseUser {
                 "uId=" + uId +
                 ", uHeadUrl='" + uHeadUrl + '\'' +
                 ", uName='" + uName + '\'' +
+                ", uUserName='" + uUserName + '\'' +
                 ", uPassword='" + uPassword + '\'' +
                 ", uLoginType=" + uLoginType +
-                ", depentMent=" + depentMent +
+                ", depId=" + depId +
                 ", uBalance=" + uBalance +
                 ", uIntegeral=" + uIntegeral +
                 ", uTODO=" + uTODO +

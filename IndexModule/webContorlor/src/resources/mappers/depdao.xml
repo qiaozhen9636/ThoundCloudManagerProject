@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.qiaozhen9636.thoundcloudmanager.user.mappers.DepartmentDao">
+
+    <resultMap id="depresultMap" type="com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department">
+        <id column="depId" property="depId"/>
+        <result column="dep_name" property="depName"/>
+        <result column="dep_level" property="depLevel"/>
+        <association property="depLeader" javaType="com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser">
+            <id column="uId" property="uId"/>
+            <result column="u_head_url" property="uHeadUrl"/>
+            <result column="u_name" property="uName"/>
+            <result column="u_logintype" property="uLoginType"/>
+        </association>
+        <collection column="fun_name" property="DepFuns" ofType="string"/>
+        <collection column="place_name" property="DepPlaces" ofType="string"/>
+    </resultMap>
+    <select id="findDepartmentByDepId" parameterType="int" resultMap="depresultMap">
+        select
+               m.dep_id depId,dep_name,dep_level,u_name,u.u_id uId,u_logintype,u_head_url,fun_name,place_name
+        from
+             tc_dep_message m ,tc_user_status u,tc_dep_fun f,tc_dep_place p
+        where
+                m.dep_id=#{id} and u.dep_id=#{id} and f.dep_id=#{id} and p.dep_id=#{id}
+    </select>
+</mapper>

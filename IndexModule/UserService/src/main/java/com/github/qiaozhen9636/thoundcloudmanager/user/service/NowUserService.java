@@ -22,4 +22,8 @@ public interface NowUserService {
     int getuLoginType();
 
     boolean findUser(String userName, String password);
+
+    String getDepartmentName();
+
+    String getUserPosition();
 }

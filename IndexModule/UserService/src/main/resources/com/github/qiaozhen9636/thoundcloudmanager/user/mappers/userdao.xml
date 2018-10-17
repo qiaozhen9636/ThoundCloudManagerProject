@@ -9,7 +9,7 @@
             resultType="com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser">
         select
          u_id uId,u_head_url uHeadUrl,
-         u_name uName,u_password uPassword,u_logintype uLoginType,
+         u_name uName,u_password uPassword,u_logintype uLoginType,dep_id depId,
          u_balance uBalance,u_integral uIntegral,u_todo uTODO
         from tc_user_status
         where u_username=#{value}
@@ -18,4 +18,15 @@
     <update id="setUserLoginType">
         update tc_user_status set u_logintype=#{type} where u_id=#{uid}
     </update>
+
+    <select id="findUserStatusByUId"
+            parameterType="int"
+            resultType="com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser">
+        select
+               u_head_url uHeadUrl,u_username uUserName,
+               u_name uName,u_password uPassword,u_logintype uLoginType,dep_id depId,
+               u_balance uBalance,u_integral uIntegral,u_todo uTODO
+        from tc_user_status
+        where u_id=#{id}
+    </select>
 </mapper>

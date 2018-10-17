@@ -9,7 +9,7 @@
  * qiaozhen         修改时间          版本号             描述
  */
 
-import com.github.qiaozhen9636.thoundcloudmanager.user.output.UserDataServiceImpl;
+import com.github.qiaozhen9636.thoundcloudmanager.user.output.Impl.UserDataServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -36,5 +36,10 @@ public class TestAboutUtils {
         UserDataServiceImpl userDataService = ((UserDataServiceImpl) context.getBean("UserDataService"));
         userDataService.createUserDataService("admin","694219972");
         System.out.println(userDataService.getUserName());
+    }
+    @Test
+    public void test2(){
+        UserDataServiceImpl service = ((UserDataServiceImpl) context.getBean("UserDataService"));
+        System.out.println(service.test());
     }
 }

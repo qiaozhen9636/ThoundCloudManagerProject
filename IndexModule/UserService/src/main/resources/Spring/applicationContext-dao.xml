@@ -19,6 +19,7 @@
     </bean>
     <bean class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath*:com/github/qiaozhen9636/thoundcloudmanager/user/mappers/*dao.xml"/>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.github.qiaozhen9636.thoundcloudmanager.user.mappers"/>

@@ -29,12 +29,28 @@ public class NowUserServiceImpl implements NowUserService {
     @Autowired
     private BaseUser baseUser;
     @Autowired
+    private BaseUser DEFBASEUSER;
+    @Autowired
     private UserDao userDao;
     private String password="uninited";
+
     public boolean findUser(String userName, String password) {
         this.password=password;
         baseUser = userDao.findUserStatusByLoginName(userName);
+        System.out.println(baseUser);
         return baseUser.getuId()!=-1;
+    }
+
+    public String getDepartmentName() {
+        return null;
+    }
+
+    public String getUserPosition() {
+        return null;
+    }
+
+    public void setBaseUser(BaseUser baseUser) {
+        this.baseUser = baseUser;
     }
 
     public BaseUser getBaseUserData() {

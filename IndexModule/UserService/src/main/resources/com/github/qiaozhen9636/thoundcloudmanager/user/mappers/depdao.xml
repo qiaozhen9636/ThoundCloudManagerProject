@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.qiaozhen9636.thoundcloudmanager.user.mappers.DepartmentDao">
+
+    <resultMap id="depresultMap" type="com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department">
+        <id column="depIds" property="depId"/>
+        <result column="dep_name" property="depName"/>
+        <result column="dep_level" property="depLevel"/>
+        <association property="depLeader" javaType="com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser">
+            <id column="uId" property="uId"/>
+            <result column="u_head_url" property="uHeadUrl"/>
+            <result column="u_name" property="uName"/>
+            <result column="u_logintype" property="uLoginType"/>
+        </association>
+        <!--collection的嵌套查询中column是另一个sql语句的输入值，内容取决于当前sql的结果数据库表列名（Ids）-->
+        <!--select是内部查询的id-->
+        <collection column="depIds" property="DepFuns" ofType="string" select="getListOfDepFuns"/>
+        <collection column="depIds" property="DepPlaces" ofType="string" select="getListOfDepPlaces"/>
+    </resultMap>
+    <select id="findDepartmentByDepId" parameterType="int" resultMap="depresultMap">
+        select
+               m.dep_id depIds,dep_name,dep_level,u_name,u.u_id uId,u_logintype,u_head_url
+        from
+             tc_dep_message m ,tc_user_status u
+        where
+                m.dep_id=#{id} and u.dep_id=#{id}
+    </select>
+    <select id="findDepartmentByDepName" parameterType="int" resultMap="depresultMap">
+    </select>
+
+    <select id="getListOfDepFuns" parameterType="int" resultType="string">
+        select fun_name from tc_dep_fun where dep_id=#{uId}
+    </select>
+    <select id="getListOfDepPlaces" parameterType="int" resultType="string">
+        select place_name from tc_dep_place where dep_id=#{depid}
+    </select>
+</mapper>

@@ -37,9 +37,8 @@ public class index {
     @RequestMapping("/getUserData")
     @ResponseBody
     public User getUserData(){
-        System.out.println("到了getUserData");
-        if (userService.getUserName().equals(defUserName))return null;
-        System.out.println(defUserName);
+        //如果为登录，返回null
+        if (!userService.checkxLogin())return null;
         return new User(userService.getUserName()," ",userService.getIntegral(),userService.getUserBalance(),
                 userService.getUserTodo());
     }
@@ -52,7 +51,13 @@ public class index {
         // 怎么跳都会变成localhost:8080/index/index.html
         //加空前缀无效，单/前缀会导致css无法渲染，
         //但我想要跳到localhost:8080/index.html
-        //不得以智能通过绝对路径进行重定向
+        //不得以只能通过绝对路径进行重定向
+    }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        userService.removeUserDataService();
+        return  "redirect:/index.html";
     }
 
 }

@@ -8,14 +8,17 @@
  * <author>          <time>          <version>          <desc>
  * qiaozhen         修改时间          版本号             描述
  */
-package com.github.qiaozhen9636.thoundcloudmanager.user.output;
+package com.github.qiaozhen9636.thoundcloudmanager.user.output.Impl;
 
+import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
+import com.github.qiaozhen9636.thoundcloudmanager.user.output.UserDataService;
+import com.github.qiaozhen9636.thoundcloudmanager.user.service.DepartmentService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.NowUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * 〈一句话功能简述〉<br>
@@ -30,7 +33,14 @@ public class UserDataServiceImpl implements UserDataService {
 
     @Autowired
     private NowUserService userService;
+    @Autowired
+    private DepartmentService testService;
+//    private AllUserService dataService;
 
+
+    public Department test() {
+        return testService.findDepartmentByDepId(2);
+    }
 
     public String createUserDataService(String userName, String password) {
         if (userService != null) {
@@ -67,8 +77,12 @@ public class UserDataServiceImpl implements UserDataService {
         userService.setUserLoginType(false);
     }
 
+
+
     public String register(String nickName, String photoUrl, Date birth, boolean male, String depName, String nation, long cardNum, String address, String natives, String party, String qualifications, String collage, long phone, String email) {
         return null;
+//        dataService.addUser(nickName,photoUrl,birth,male,depName,nation,cardNum,address,natives
+//                ,party,qualifications,collage,phone,email);
     }
 
     public String resetOneMessageOfUser(Object message, String messageType) {
@@ -92,11 +106,11 @@ public class UserDataServiceImpl implements UserDataService {
     }
 
     public String getUserDepName() {
-        return null;
+        return userService.getDepartmentName();
     }
 
     public String getUserPosition() {
-        return null;
+        return userService.getUserPosition();
     }
 
     public BigDecimal getUserBalance() {
@@ -105,5 +119,9 @@ public class UserDataServiceImpl implements UserDataService {
 
     public int getUserTodo() {
         return userService.getBaseUserData().getuTODO();
+    }
+
+    public boolean checkxLogin() {
+        return userService.getuLoginType()==1;
     }
 }

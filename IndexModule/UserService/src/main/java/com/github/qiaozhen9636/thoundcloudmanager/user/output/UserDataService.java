@@ -10,11 +10,15 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.output;
 
+import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
+
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
 
 
 public interface UserDataService {
+
+    Department test();
 
     /**
      * 设置新的服务中用户
@@ -115,4 +119,9 @@ public interface UserDataService {
      * @return  获取用户代办事项
      */
     int getUserTodo();
+
+    /**
+     * @return 已登录则为true，否则为false
+     */
+    boolean checkxLogin();
 }
