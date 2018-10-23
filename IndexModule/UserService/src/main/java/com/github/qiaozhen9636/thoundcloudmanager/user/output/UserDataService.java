@@ -10,15 +10,13 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.output;
 
-import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
-
 import java.math.BigDecimal;
 import java.util.Date;
 
 
 public interface UserDataService {
 
-    Department test();
+//    List<String> test();
 
     /**
      * 设置新的服务中用户

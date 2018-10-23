@@ -10,8 +10,11 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 /**
@@ -24,10 +27,15 @@ import java.util.List;
  */
 @Component
 public class Department {
+    @Value("-1")
     private int depId;
+    @Value("NULL")
     private String depName;
+    @Autowired
     private BaseUser depLeader;
+    @Value("-1")
     private int depLevel;
+    private String depClassName;
     private List<String> DepFuns;
     private List<String> DepPlaces;
 
@@ -41,6 +49,14 @@ public class Department {
         this.depLevel = depLevel;
         DepFuns = depFuns;
         DepPlaces = depPlaces;
+    }
+
+    public String getDepClassName() {
+        return depClassName;
+    }
+
+    public void setDepClassName(String depClassName) {
+        this.depClassName = depClassName;
     }
 
     public int getDepId() {
@@ -93,13 +109,18 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" +
-                "depId=" + depId +
-                ", depName='" + depName + '\'' +
-                ", depLeader=" + depLeader +
-                ", depLevel=" + depLevel +
-                ", DepFuns=" + DepFuns +
-                ", DepPlaces=" + DepPlaces +
-                '}';
+        Field[] fields = this.getClass().getDeclaredFields();
+        String resultString = "Department{";
+        for (Field field : fields) {
+            try {
+                resultString = resultString+field.getName()+"="+field.get(this)+", ";
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        resultString = resultString.substring(0,resultString.lastIndexOf(','))+"}";
+
+        return resultString;
     }
 }

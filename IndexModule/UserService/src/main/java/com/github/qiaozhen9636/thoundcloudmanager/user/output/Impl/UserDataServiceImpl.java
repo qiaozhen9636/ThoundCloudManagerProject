@@ -10,7 +10,6 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.output.Impl;
 
-import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
 import com.github.qiaozhen9636.thoundcloudmanager.user.output.UserDataService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.DepartmentService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.NowUserService;
@@ -38,8 +37,9 @@ public class UserDataServiceImpl implements UserDataService {
 //    private AllUserService dataService;
 
 
-    public Department test() {
-        return testService.findDepartmentByDepId(2);
+    public int test() {
+        testService.findDepartmentByDepId(2);
+        return testService.getParentId();
     }
 
     public String createUserDataService(String userName, String password) {

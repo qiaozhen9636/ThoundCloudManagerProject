@@ -11,7 +11,9 @@
 package com.github.qiaozhen9636.thoundcloudmanager.user.service.impl;
 
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser;
+import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
 import com.github.qiaozhen9636.thoundcloudmanager.user.mappers.UserDao;
+import com.github.qiaozhen9636.thoundcloudmanager.user.service.DepartmentService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.NowUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,8 @@ public class NowUserServiceImpl implements NowUserService {
     private BaseUser DEFBASEUSER;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    DepartmentService depService;
     private String password="uninited";
 
     public boolean findUser(String userName, String password) {
@@ -42,11 +46,15 @@ public class NowUserServiceImpl implements NowUserService {
     }
 
     public String getDepartmentName() {
-        return null;
+        depService.findDepartmentByDepId(baseUser.getDepId());
+        return depService.getDepartmentName();
     }
 
     public String getUserPosition() {
-        return null;
+        Department department = depService.findDepartmentByDepId(baseUser.getDepId());
+        BaseUser depLeader = department.getDepLeader();
+        if (baseUser.getuName().equals(depLeader.getuName()))return department.getDepClassName();
+        else return "职工";
     }
 
     public void setBaseUser(BaseUser baseUser) {

@@ -13,7 +13,6 @@ package com.github.qiaozhen9636.thoundcloudmanager.user.service.impl;
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser;
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
 import com.github.qiaozhen9636.thoundcloudmanager.user.mappers.DepartmentDao;
-import com.github.qiaozhen9636.thoundcloudmanager.user.mappers.UserDao;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,12 +31,10 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     DepartmentDao depDao;
-    @Autowired
-    UserDao userDao;
+
     @Autowired
     Department department;
     public Department findDepartmentByDepId(int depId) {
-        System.out.println("1");
         department = depDao.findDepartmentByDepId(depId);
         return department;
     }
@@ -64,8 +61,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     public String getFunctionOfDepartment(String function) {
-        return null;
-//        depDao.getFunctionsByName(function);
+        return depDao.getFunctionsByName(function);
     }
 
     public List<String> getDepartmentOffice() {
@@ -73,19 +69,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     public String getOfficeOfDepartmentName(String office) {
-        return null;
-//        depDao.getDepPlaceByName(office);
+        return depDao.getDepPlaceByName(office);
     }
 
     public List<String> getDepartmentNamesByLevel(int level) {
         return depDao.getDepsByLevel(level);
     }
 
-    public BaseUser getParentLeader() {
-        return department.getDepLeader();
+    public int getParentId() {
+        return depDao.getParentId(department.getDepId());
     }
 
-    public String getParentName() {
-        return depDao.findParentName(department.getDepId());
-    }
 }

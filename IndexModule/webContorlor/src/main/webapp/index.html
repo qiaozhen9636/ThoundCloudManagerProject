@@ -17,6 +17,7 @@
     <![endif]-->
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
+    <script src="js/core.js"></script>
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="js/jquery.min.js"></script>
@@ -41,6 +42,7 @@
         }
     </style>
     <script type="text/javascript">
+
         $(document).ready(function () {
             $("#carousel-news-inner").find("img").css("margin-left", "auto");
             $("#carousel-news-inner").find("img").css("margin-right", "auto");
@@ -50,6 +52,7 @@
                 "margin-right": "0px",
                 "border-radius": "6px"
             });
+
 
             $.ajax({
                 url: "localhost:8080/PageControllerServlet?method=getNewsData",
@@ -80,6 +83,17 @@
             })
 
             $.ajax({
+                url: "http://localhost:8080/index/getWorkList.do",
+                type: "post",
+                success: function (data) {
+                    resetHerfList($('#work-items'),data,"list-group-item collapse-list item-1");
+                },
+                dataType: "json",
+                error: function () {
+
+                }
+            })
+            $.ajax({
                 url: "http://localhost:8080/index/getUserData.do",
                 type: "POST",
                 success: function (data) {
@@ -88,10 +102,11 @@
                     $("#user-integral").empty().append(data.integral);
                     $("#user-balance").empty().append(data.balance);
                     $("#user-todo").empty().append(data.todo);
+                    $("#user-dep").empty().append(data.depName + "<small> " + data.thisclassName + "</small>");
                 },
                 dataType: "json",
                 error: function () {
-						// alert("获取用户信息失败");
+                    // alert("获取用户信息失败");
                     $(".have-userdata").addClass("hidden");
                 }
             })
@@ -227,7 +242,7 @@
                         <div class="row" style="padding-left: 10px;">
                             <h4 id="user-name">用户姓名</h4>
                             <h5 id="user-dep">用户所在单位
-                                <small id="user-class"> 用户职位</small>
+                                <small> 用户职位</small>
                             </h5>
                         </div>
                     </div>
@@ -277,27 +292,24 @@
                                           data-toggle="collapse"></span>
 								</span>
                     </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">机构概况</p>
-                    </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">部门A对外功能</p>
-                    </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">部门B对外功能</p>
-                    </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">人事部</p>
-                    </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">科技部</p>
-                    </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">简历提交</p>
-                    </a>
-                    <a href="#" class="list-group-item collapse-list item-1">
-                        <p class="collapse-list-in">意见反馈</p>
-                    </a>
+                    <div id="work-items">
+                        <a href="javascript:changes('/News/News.html','新闻',1);"
+                           class="list-group-item collapse-list item-1">
+                            <p class="collapse-list-in">机构概况</p>
+                        </a>
+                        <a href="#" class="list-group-item collapse-list item-1">
+                            <p class="collapse-list-in">人事部</p>
+                        </a>
+                        <a href="#" class="list-group-item collapse-list item-1">
+                            <p class="collapse-list-in">技术部</p>
+                        </a>
+                        <a href="#" class="list-group-item collapse-list item-1">
+                            <p class="collapse-list-in">简历提交</p>
+                        </a>
+                        <a href="#" class="list-group-item collapse-list item-1">
+                            <p class="collapse-list-in">意见反馈</p>
+                        </a>
+                    </div>
                     <a class="list-group-item active">
                         技能培训
                         <span style="float: right;">
@@ -419,15 +431,15 @@
                 <!-- Nav tabs -->
                 <ul id="artcle-ul" class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">新闻</a>
+                        <a id="page1_name" href="#page1" aria-controls="home" role="tab" data-toggle="tab">新闻</a>
                     </li>
                     <li role="presentation" class="have-userdata">
-                        <a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">公告</a>
+                        <a href="#page2" aria-controls="profile" role="tab" data-toggle="tab">公告</a>
                     </li>
                 </ul>
                 <!-- Tab panes -->
                 <div class="tab-content panel panel-default">
-                    <div role="tabpanel" class="tab-pane active" id="home">
+                    <div role="tabpanel" class="tab-pane active" id="page1">
                         <ol class="breadcrumb">
                             按年份划分：
                             <li>
@@ -521,12 +533,44 @@
                         </ol>
                         <div class="row">
                             <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
+                                <div class="thumbnail" style="background-color: #F8F8F8;">
                                     <img src="img/avatar.png" alt="...">
                                     <div class="caption">
                                         <h3>新闻标题</h3>
                                         <p>
-                                            摘要...................................................................................</p>
+                                            摘要.</p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary" role="button">查看详情</a>
+                                            <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
+                                            <a href="#" class="btn btn-danger have-userdata have-authorities"
+                                               role="button">删除</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail" style="background-color: #F8F8F8;">
+                                    <img src="img/avatar.png" alt="...">
+                                    <div class="caption">
+                                        <h3>新闻标题</h3>
+                                        <p>
+                                            摘要.</p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary" role="button">查看详情</a>
+                                            <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
+                                            <a href="#" class="btn btn-danger have-userdata have-authorities"
+                                               role="button">删除</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail" style="background-color: #F8F8F8;">
+                                    <img src="img/avatar.png" alt="...">
+                                    <div class="caption">
+                                        <h3>新闻标题</h3>
+                                        <p>
+                                            摘要.</p>
                                         <p>
                                             <a href="#" class="btn btn-primary" role="button">查看详情</a>
                                             <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
@@ -569,7 +613,7 @@
                             </nav>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane have-userdata" id="profile">
+                    <div role="tabpanel" class="tab-pane have-userdata" id="page2">
                         <ol class="breadcrumb">
                             <li>
                                 <a href="#">Home</a>

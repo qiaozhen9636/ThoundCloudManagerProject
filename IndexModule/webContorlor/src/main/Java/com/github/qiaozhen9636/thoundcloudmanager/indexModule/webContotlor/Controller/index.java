@@ -10,13 +10,18 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.indexModule.webContotlor.Controller;
 
-import com.github.qiaozhen9636.thoundcloudmanager.indexModule.webContotlor.beans.User;
+import com.github.qiaozhen9636.thoundcloudmanager.indexModule.webContotlor.vo.User;
+import com.github.qiaozhen9636.thoundcloudmanager.user.output.DepDataService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.output.UserDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * 〈一句话功能简述〉<br> 
@@ -31,16 +36,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class index {
     @Autowired
     private UserDataService userService;
+    @Autowired
+    private DepDataService depService;
     @Value("${BaseUser.Name}")
     private String defUserName;
 
+    /**
+     * @return 获取用户信息方法，会返回用户的昵称、积分、余额、待办事项和金额
+     * 因为团队活动模块还未完成，所以没有距离活动时间的显示
+     */
     @RequestMapping("/getUserData")
     @ResponseBody
     public User getUserData(){
-        //如果为登录，返回null
+        //如果未登录，返回null
+//        System.out.println(userService.getUserPosition());
         if (!userService.checkxLogin())return null;
         return new User(userService.getUserName()," ",userService.getIntegral(),userService.getUserBalance(),
-                userService.getUserTodo());
+                userService.getUserTodo(),userService.getUserDepName(),userService.getUserPosition());
     }
     @RequestMapping("/login")
     public String login(String username, String password){
@@ -56,8 +68,23 @@ public class index {
 
     @RequestMapping("/logout")
     public String logout(){
+        if (!userService.checkxLogin())return null;
         userService.removeUserDataService();
         return  "redirect:/index.html";
     }
 
+    @RequestMapping("/getWorkList")
+    @ResponseBody
+    public Map<String,String> getWorkList(){
+       if (!userService.checkxLogin())return null;
+        if (depService.getDepartmentName().equals("NULL")) {
+            depService.createDepDataService(userService.getUserDepName());
+        }
+        Map<String,String> linkMap = new TreeMap<>();
+        List<String> departmentFunctions = depService.getDepartmentFunctions();
+        for (String departmentFunction : departmentFunctions) {
+            linkMap.put(departmentFunction,"#");
+        }
+        return linkMap;
+    }
 }

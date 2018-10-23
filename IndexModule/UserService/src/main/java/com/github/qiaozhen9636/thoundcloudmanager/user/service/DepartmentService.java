@@ -43,15 +43,7 @@ public interface DepartmentService {
      */
     BaseUser getDepartmentLeader();
 
-//    /**
-//     * @return 部门成员基础信息名单
-//     */
-//    List<BaseUser> getDepartmentMemberList();
-//
-//    /**
-//     * @return 部门成员详细信息名单
-//     */
-//    List<UserDetial> getDepartmentMemberMessageList();
+
 
     /**
      * 获取部门职能
@@ -84,15 +76,9 @@ public interface DepartmentService {
      */
     List<String> getDepartmentNamesByLevel(int level);
 
-    /**
-     * 获得上级部门领导人信息
-     * @return 上级领导人信息
-     */
-    BaseUser getParentLeader();
 
     /**
-     * 获得上级部门名称
-     * @return 上级部门名称
+     * @return 获取父部门Id
      */
-    String getParentName();
+    int getParentId();
 }

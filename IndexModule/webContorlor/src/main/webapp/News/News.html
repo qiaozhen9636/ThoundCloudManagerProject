@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <script src="../js/html5shiv.min.js"></script>
+    <script src="../js/respond.min.js"></script>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../js/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../js/bootstrap.min.js"></script>
+    <link href='../css/base.css' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <!--theme-style-->
+    <link href="../css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            initRow();
+            chackUserlogin();
+        })
+
+    </script>
+</head>
+
+<div role="tabpanel" class="tab-pane active" id="home">
+    <ol class="breadcrumb">
+        按年份划分：
+        <li>
+            <a href="#">2018年</a>
+        </li>
+        <li>
+            <a href="#">2017年</a>
+        </li>
+        <li>
+            <a href="#">2016年</a>
+        </li>
+        <li>
+            <a href="#">2015年</a>
+        </li>
+        <li>
+            <a href="#">2014年</a>
+        </li>
+        <li>
+            <a href="#">2013年</a>
+        </li>
+        <li>
+            <a href="#">2012年</a>
+        </li>
+        <li>
+            <a href="#">2011年</a>
+        </li>
+        <li>
+            <a href="#">2010年</a>
+        </li>
+        <li>
+            <a href="#">2009年</a>
+        </li>
+        <li>
+            <a href="#">2008年</a>
+        </li>
+        <li>
+            <a href="#">2007年</a>
+        </li>
+        <br/>
+        按月份划分：
+        <li>
+            <a href="#">1月</a>
+        </li>
+        <li>
+            <a href="#">2月</a>
+        </li>
+        <li>
+            <a href="#">3月</a>
+        </li>
+        <li>
+            <a href="#">4月</a>
+        </li>
+        <li>
+            <a href="#">5月</a>
+        </li>
+        <li>
+            <a href="#">6月</a>
+        </li>
+        <li>
+            <a href="#">7月</a>
+        </li>
+        <li>
+            <a href="#">8月</a>
+        </li>
+        <li>
+            <a href="#">9月</a>
+        </li>
+        <li>
+            <a href="#">10月</a>
+        </li>
+        <li>
+            <a href="#">11月</a>
+        </li>
+        <li>
+            <a href="#">12月</a>
+        </li>
+        <br/>按来源划分：
+        <li>
+            <a href="#">内部</a>
+        </li>
+        <li>
+            <a href="#">外部</a>
+        </li>
+        <br/>按类别划分：
+        <li>
+            <a href="#">内部</a>
+        </li>
+        <li>
+            <a href="#">外部</a>
+        </li>
+    </ol>
+    <div class="row">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail" style="background-color: #F8F8F8;">
+                <img src="/img/avatar.png" alt="...">
+                <div class="caption">
+                    <h3>新闻标题</h3>
+                    <p>
+                        摘要.</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">查看详情</a>
+                        <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
+                        <a href="#" class="btn btn-danger have-userdata have-authorities"
+                           role="button">删除</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail" style="background-color: #F8F8F8;">
+                <img src="/img/avatar.png" alt="...">
+                <div class="caption">
+                    <h3>新闻标题</h3>
+                    <p>
+                        摘要.</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">查看详情</a>
+                        <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
+                        <a href="#" class="btn btn-danger have-userdata have-authorities"
+                           role="button">删除</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <div class="thumbnail" style="background-color: #F8F8F8;">
+                <img src="/img/avatar.png" alt="...">
+                <div class="caption">
+                    <h3>新闻标题</h3>
+                    <p>
+                        摘要.</p>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">查看详情</a>
+                        <a href="#" class="btn btn-success have-userdata" role="button">修改</a>
+                        <a href="#" class="btn btn-danger have-userdata have-authorities"
+                           role="button">删除</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row text-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#">1</a>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                </li>
+                <li>
+                    <a href="#">5</a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<body>
+
+
+
+</body>
+</html>

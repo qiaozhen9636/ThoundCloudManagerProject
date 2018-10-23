@@ -18,12 +18,12 @@ public interface DepartmentDao {
     Department findDepartmentByDepId(int depId);
 
     Department findDepartmentByDepName(String depName);
-//
-//    String getFunctionsByName(String function);
-//
-//    String getDepPlaceByName(String office);
+
+    String getFunctionsByName(String function);
+
+    String getDepPlaceByName(String office);
 
     List<String> getDepsByLevel(int level);
 
-    String findParentName(int depId);
+    int getParentId(int depId);
 }
