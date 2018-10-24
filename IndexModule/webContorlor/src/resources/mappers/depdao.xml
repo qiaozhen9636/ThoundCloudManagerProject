@@ -34,7 +34,7 @@
         from
         tc_dep_message m ,tc_user_status u
         where
-        m.dep_id=#{id} and u.dep_id=#{id}
+        m.dep_id=#{id} and u.u_id=m.u_id
     </select>
 
     <select id="findDepartmentByDepName" parameterType="string" resultMap="depresultMap">
@@ -43,7 +43,7 @@
         from
              tc_dep_message m ,tc_user_status u
         where
-                m.dep_name=#{value} and u.dep_id=m.dep_id
+                m.dep_name=#{value} and u.u_id=m.u_id
     </select>
 
     <select id="getDepsByLevel" parameterType="int" resultType="string">

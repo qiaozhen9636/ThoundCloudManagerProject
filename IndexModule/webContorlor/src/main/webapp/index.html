@@ -55,7 +55,7 @@
 
 
             $.ajax({
-                url: "localhost:8080/PageControllerServlet?method=getNewsData",
+                url: "http://2x24l52465.iok.la/PageControllerServlet?method=getNewsData",
                 type: "GET",
                 success: function (data) {
                     $("#carousel-news-inner").empty();
@@ -83,7 +83,7 @@
             })
 
             $.ajax({
-                url: "http://localhost:8080/index/getWorkList.do",
+                url: "http://2x24l52465.iok.la/webControllor/index/getWorkList.do",
                 type: "post",
                 success: function (data) {
                     resetHerfList($('#work-items'),data,"list-group-item collapse-list item-1");
@@ -94,7 +94,7 @@
                 }
             })
             $.ajax({
-                url: "http://localhost:8080/index/getUserData.do",
+                url: "http://2x24l52465.iok.la/webControllor/index/getUserData.do",
                 type: "POST",
                 success: function (data) {
                     $("#loginwindow").addClass("hidden");
@@ -212,7 +212,7 @@
     <div class="row" id="maincontext">
         <div class="col-md-3">
             <div id="loginwindow" class="row panel panel-default" style="padding: 10px;background-color: #F8F8F8;">
-                <form class="form-signin" action="http://localhost:8080/index/login.do">
+                <form class="form-signin" action="http://2x24l52465.iok.la/webControllor/index/login.do">
                     <h2 class="form-signin-heading">请登录</h2>
                     <label>用户名：</label>
                     <label for="inputEmail" class="sr-only">Email address</label>
@@ -277,7 +277,7 @@
                         </div>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block"
-                            onclick="location.href='http://localhost:8080/index/logout.do'">
+                            onclick="location.href='http://2x24l52465.iok.la/webControllor/index/logout.do'">
                         退出
                     </button>
                 </div>

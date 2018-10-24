@@ -87,4 +87,14 @@ public class index {
         }
         return linkMap;
     }
+
+    @RequestMapping("/getUserAccess")
+    @ResponseBody
+    public String getUserAccess(){
+        if (!userService.checkxLogin())return null;
+        if (depService.getDepartmentName().equals("NULL")) {
+            depService.createDepDataService(userService.getUserDepName());
+        }
+        return String.valueOf(depService.getDepartmentLevel()+1);
+    }
 }

@@ -53,6 +53,7 @@ public class NowUserServiceImpl implements NowUserService {
     public String getUserPosition() {
         Department department = depService.findDepartmentByDepId(baseUser.getDepId());
         BaseUser depLeader = department.getDepLeader();
+        System.err.println(department);
         if (baseUser.getuName().equals(depLeader.getuName()))return department.getDepClassName();
         else return "职工";
     }
