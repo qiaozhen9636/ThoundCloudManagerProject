@@ -81,4 +81,9 @@ public interface DepartmentService {
      * @return 获取父部门Id
      */
     int getParentId();
+
+    /**
+     * @return 获取当前部口所有的成员
+     */
+    List<BaseUser> getDepartmentMemberList();
 }

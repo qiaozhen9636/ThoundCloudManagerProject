@@ -10,6 +10,7 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.indexModule.webContotlor.Controller;
 
+import com.github.qiaozhen9636.thoundcloudmanager.indexModule.webContotlor.vo.ResultMessage;
 import com.github.qiaozhen9636.thoundcloudmanager.indexModule.webContotlor.vo.User;
 import com.github.qiaozhen9636.thoundcloudmanager.user.output.DepDataService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.output.UserDataService;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,7 +35,7 @@ import java.util.TreeMap;
  */
 @Controller
 @RequestMapping("/index")
-public class index {
+public class IndexControllor {
     @Autowired
     private UserDataService userService;
     @Autowired
@@ -47,16 +49,16 @@ public class index {
      */
     @RequestMapping("/getUserData")
     @ResponseBody
-    public User getUserData(){
+    public ResultMessage getUserData(){
         //如果未登录，返回null
 //        System.out.println(userService.getUserPosition());
-        if (!userService.checkxLogin())return null;
-        return new User(userService.getUserName()," ",userService.getIntegral(),userService.getUserBalance(),
+        if (!userService.checkxLogin())return ResultMessage.UNLOGIN(null);
+        User user = new User(userService.getUserName()," ",userService.getIntegral(),userService.getUserBalance(),
                 userService.getUserTodo(),userService.getUserDepName(),userService.getUserPosition());
+        return ResultMessage.SUCCESS(user);
     }
     @RequestMapping("/login")
     public String login(String username, String password){
-        System.out.println(username+" "+password);
         userService.createUserDataService(username,password);
         return "redirect:/index.html";
         //↑在类上添加了@RequestMapping注解后,使用单纯的"index"
@@ -75,17 +77,23 @@ public class index {
 
     @RequestMapping("/getWorkList")
     @ResponseBody
-    public Map<String,String> getWorkList(){
-       if (!userService.checkxLogin())return null;
+    public ResultMessage getWorkList(HttpServletRequest request){
+       if (!userService.checkxLogin())return ResultMessage.UNLOGIN(null);
         if (depService.getDepartmentName().equals("NULL")) {
             depService.createDepDataService(userService.getUserDepName());
         }
         Map<String,String> linkMap = new TreeMap<>();
         List<String> departmentFunctions = depService.getDepartmentFunctions();
+        String url = "";
         for (String departmentFunction : departmentFunctions) {
             linkMap.put(departmentFunction,"#");
         }
-        return linkMap;
+        System.err.println(request.getContextPath()+request.getServletPath());
+        linkMap.put("查看人员信息",request.getContextPath()+"/work/getMamberOfDep.do");
+        if (!userService.getUserPosition().equals("职工")){
+            linkMap.put("重置员工密码","#");
+        }
+        return new ResultMessage(200,linkMap);
     }
 
     @RequestMapping("/getUserAccess")

@@ -86,7 +86,9 @@
                 url: "http://2x24l52465.iok.la/webControllor/index/getWorkList.do",
                 type: "post",
                 success: function (data) {
-                    resetHerfList($('#work-items'),data,"list-group-item collapse-list item-1");
+                    if (data.errorCode===200) {
+                        resetHerfList($('#work-items'),data.data,"list-group-item collapse-list item-1");
+                    }
                 },
                 dataType: "json",
                 error: function () {
@@ -94,15 +96,21 @@
                 }
             })
             $.ajax({
-                url: "http://2x24l52465.iok.la/webControllor/index/getUserData.do",
+                url: "http://"+document.domain+"/webControllor/index/getUserData.do",
                 type: "POST",
                 success: function (data) {
-                    $("#loginwindow").addClass("hidden");
-                    $("#user-name").empty().append(data.nickName);
-                    $("#user-integral").empty().append(data.integral);
-                    $("#user-balance").empty().append(data.balance);
-                    $("#user-todo").empty().append(data.todo);
-                    $("#user-dep").empty().append(data.depName + "<small> " + data.thisclassName + "</small>");
+                    if (data.errorCode===200) {
+                        $("#loginwindow").addClass("hidden");
+                        $("#user-name").empty().append(data.data.nickName);
+                        $("#user-integral").empty().append(data.data.integral);
+                        $("#user-balance").empty().append(data.data.balance);
+                        $("#user-todo").empty().append(data.data.todo);
+                        $("#user-dep").empty().append(data.data.depName + "<small> " + data.data.thisclassName +
+                            "</small>");
+                    }else {
+                        $(".have-userdata").addClass("hidden");
+                    }
+
                 },
                 dataType: "json",
                 error: function () {

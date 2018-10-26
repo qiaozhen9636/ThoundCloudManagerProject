@@ -26,4 +26,6 @@ public interface NowUserService {
     String getDepartmentName();
 
     String getUserPosition();
+
+    void setSalt(String salt);
 }

@@ -18,4 +18,18 @@
     <update id="setUserLoginType">
         update tc_user_status set u_logintype=#{type} where u_id=#{uid}
     </update>
+    <update id="insertSalt">
+        update tc_user_status set u_salt=#{salt} where u_id=#{uid}
+    </update>
+
+    <select id="listUsersOfDepId" parameterType="int"
+            resultType="com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser">
+        select
+        u_id uId,u_name uName,u_head_url uHeadUrl,u_logintype uLoginType,u_username uUserName,u_todo uTODO
+        from
+        tc_user_status
+        where
+        dep_id=#{id}
+    </select>
+
 </mapper>

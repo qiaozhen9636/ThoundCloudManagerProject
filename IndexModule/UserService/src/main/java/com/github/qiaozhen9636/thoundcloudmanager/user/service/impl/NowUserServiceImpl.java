@@ -58,6 +58,11 @@ public class NowUserServiceImpl implements NowUserService {
         else return "职工";
     }
 
+    @Override
+    public void setSalt(String salt) {
+        userDao.insertSalt(baseUser.getuId(),salt);
+    }
+
     public void setBaseUser(BaseUser baseUser) {
         this.baseUser = baseUser;
     }

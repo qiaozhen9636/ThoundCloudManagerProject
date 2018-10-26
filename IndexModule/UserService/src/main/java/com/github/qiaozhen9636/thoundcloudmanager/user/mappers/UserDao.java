@@ -13,6 +13,8 @@ package com.github.qiaozhen9636.thoundcloudmanager.user.mappers;
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface UserDao {
 
     BaseUser findUserStatusByLoginName(String name);
@@ -20,4 +22,8 @@ public interface UserDao {
     void setUserLoginType(@Param(value = "uid") int getuId,@Param(value = "type") int i);
 
     BaseUser findUserStatusByUId(int uId);
+
+    void insertSalt(@Param(value = "uid") int getuId,@Param(value = "salt") String salt);
+
+    List<BaseUser> listUsersOfDepId(int depId);
 }

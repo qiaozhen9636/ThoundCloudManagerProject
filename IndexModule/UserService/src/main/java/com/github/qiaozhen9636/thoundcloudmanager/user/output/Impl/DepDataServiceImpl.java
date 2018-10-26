@@ -32,11 +32,14 @@ import java.util.List;
 public class DepDataServiceImpl implements DepDataService{
 
     @Autowired
-    DepartmentService depService;
+    private DepartmentService depService;
+    private boolean haveCreate = false;
+    private List<BaseUser> departmentMemberList;
 
 
     public boolean createDepDataService(int id) {
         if (depService.findDepartmentByDepId(id) != null) {
+            haveCreate = true;
             return true;
         }else {
             return false;
@@ -45,6 +48,7 @@ public class DepDataServiceImpl implements DepDataService{
 
     public boolean createDepDataService(String name) {
         if (depService.findDepartmentByDepName(name) != null) {
+            haveCreate = true;
             return true;
         }else {
             return false;
@@ -96,8 +100,49 @@ public class DepDataServiceImpl implements DepDataService{
         return depService.getOfficeOfDepartmentName(office);
     }
 
-    public List<BaseUser> getDepartmentMemberList() {
-        return null;
+    public List<String> getDepartmentMemberNameList() {
+        if (departmentMemberList == null||departmentMemberList.size()==0) {
+            departmentMemberList = depService.getDepartmentMemberList();
+        }
+        ArrayList<String> result = new ArrayList<>();
+        for (BaseUser baseUser : departmentMemberList) {
+            result.add(baseUser.getuName());
+        }
+        return result;
+    }
+
+    @Override
+    public List<String> getDepartmentMemberUserNameList() {
+        if (departmentMemberList == null||departmentMemberList.size()==0) {
+            departmentMemberList = depService.getDepartmentMemberList();
+        }
+        ArrayList<String> result = new ArrayList<>();
+        for (BaseUser baseUser : departmentMemberList) {
+            result.add(baseUser.getuUserName());
+        }
+        return result;
+    }
+
+    @Override
+    public int getMemberLoginTypeByUserName(String userName) {
+        if (departmentMemberList == null||departmentMemberList.size()==0) {
+            departmentMemberList = depService.getDepartmentMemberList();
+        }
+        for (BaseUser baseUser : departmentMemberList) {
+            if (baseUser.getuName().equals(userName))return baseUser.getuLoginType();
+        }
+        return -777;
+    }
+
+    @Override
+    public int getMemberTODOByUserName(String userName) {
+        if (departmentMemberList == null||departmentMemberList.size()==0) {
+            departmentMemberList = depService.getDepartmentMemberList();
+        }
+        for (BaseUser baseUser : departmentMemberList) {
+            if (baseUser.getuUserName().equals(userName))return baseUser.getuTODO();
+        }
+        return -777;
     }
 
     public List<UserDetial> getDepartmentMemberMessageList() {
@@ -127,5 +172,10 @@ public class DepDataServiceImpl implements DepDataService{
 
     public List<String> getDepartmentNamesByLevel(int level) {
         return depService.getDepartmentNamesByLevel(level);
+    }
+
+    @Override
+    public boolean checkCreate() {
+        return haveCreate;
     }
 }

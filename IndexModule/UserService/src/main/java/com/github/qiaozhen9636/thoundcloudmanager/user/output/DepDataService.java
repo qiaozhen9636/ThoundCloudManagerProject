@@ -10,7 +10,6 @@
  */
 package com.github.qiaozhen9636.thoundcloudmanager.user.output;
 
-import com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser;
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.UserDetial;
 
 import java.util.List;
@@ -94,9 +93,28 @@ public interface DepDataService {
 
 
     /**
-     * @return 部门成员基础信息名单
+     * @return 部门成员名单
      */
-    List<BaseUser> getDepartmentMemberList();
+    List<String> getDepartmentMemberNameList();
+
+    /**
+     * @return 部门成员登录名称列表
+     */
+    List<String> getDepartmentMemberUserNameList();
+
+    /**
+     * @param userName 目标用户名
+     * @return 该用户的登录状态
+     */
+    int getMemberLoginTypeByUserName(String userName);
+
+    /**
+     * @param userName 目标用户名
+     * @return 用户的待办事项数量
+     */
+    int getMemberTODOByUserName(String userName);
+
+
 
     /**
      * @return 部门成员详细信息名单
@@ -119,4 +137,9 @@ public interface DepDataService {
      * @return 部门名称列表
      */
     List<String> getDepartmentNamesByLevel(int level);
+
+    /**
+     * @return 检查是此Service否创建
+     */
+    boolean checkCreate();
 }

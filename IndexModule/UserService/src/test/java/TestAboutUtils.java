@@ -40,6 +40,6 @@ public class TestAboutUtils {
     @Test
     public void test2(){
         UserDataServiceImpl service = ((UserDataServiceImpl) context.getBean("UserDataService"));
-        System.out.println(service.test());
+//        System.out.println(service.test());
     }
 }

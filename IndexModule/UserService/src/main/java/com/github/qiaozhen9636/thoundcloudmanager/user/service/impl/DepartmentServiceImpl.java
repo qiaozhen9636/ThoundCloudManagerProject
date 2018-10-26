@@ -13,6 +13,7 @@ package com.github.qiaozhen9636.thoundcloudmanager.user.service.impl;
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.BaseUser;
 import com.github.qiaozhen9636.thoundcloudmanager.user.beans.Department;
 import com.github.qiaozhen9636.thoundcloudmanager.user.mappers.DepartmentDao;
+import com.github.qiaozhen9636.thoundcloudmanager.user.mappers.UserDao;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     DepartmentDao depDao;
 
     @Autowired
+    UserDao userDao;
+
+    @Autowired
     Department department;
+
     public Department findDepartmentByDepId(int depId) {
         department = depDao.findDepartmentByDepId(depId);
         return department;
@@ -78,6 +83,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     public int getParentId() {
         return depDao.getParentId(department.getDepId());
+    }
+
+    @Override
+    public List<BaseUser> getDepartmentMemberList() {
+        System.err.println(department.getDepId());
+        System.err.println(userDao.listUsersOfDepId(department.getDepId()));
+        return userDao.listUsersOfDepId(department.getDepId());
     }
 
 }

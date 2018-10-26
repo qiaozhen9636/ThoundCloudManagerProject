@@ -11,7 +11,6 @@
 package com.github.qiaozhen9636.thoundcloudmanager.user.output.Impl;
 
 import com.github.qiaozhen9636.thoundcloudmanager.user.output.UserDataService;
-import com.github.qiaozhen9636.thoundcloudmanager.user.service.DepartmentService;
 import com.github.qiaozhen9636.thoundcloudmanager.user.service.NowUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,15 +31,15 @@ public class UserDataServiceImpl implements UserDataService {
 
     @Autowired
     private NowUserService userService;
-    @Autowired
-    private DepartmentService testService;
+//    @Autowired
+//    private DepartmentService testService;
 //    private AllUserService dataService;
 
 
-    public int test() {
-        testService.findDepartmentByDepId(2);
-        return testService.getParentId();
-    }
+//    public int test() {
+//        testService.findDepartmentByDepId(2);
+//        return testService.getParentId();
+//    }
 
     public String createUserDataService(String userName, String password) {
         if (userService != null) {
@@ -84,6 +83,7 @@ public class UserDataServiceImpl implements UserDataService {
 //        dataService.addUser(nickName,photoUrl,birth,male,depName,nation,cardNum,address,natives
 //                ,party,qualifications,collage,phone,email);
     }
+
 
     public String resetOneMessageOfUser(Object message, String messageType) {
         return null;
